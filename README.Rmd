@@ -1,0 +1,59 @@
+---
+title: "FunEnrich"
+author: "Gregorio Alanis-Lobato"
+date: false
+output: rmarkdown::github_document
+---
+
+BP, CC, MF (i.e. Gene Ontology) and REACTOME enrichment analyses for a list of genes of interest, given a list of background genes.
+
+The package supports ENTREZIDs (default), GENE SYMBOLs and UNIPROT accessions.
+
+# Installation
+
+1. Install the `devtools` package from CRAN if you haven't done so:
+
+```r
+install.packages("devtools")
+```
+
+2. Load the `devtools` package:
+
+```r
+library("devtools")
+```
+
+3. Install `FunEnrich` using the `install_github` function:
+
+```r
+install_github("galanisl/FunEnrich")
+```
+
+# Usage
+
+To start using `FunEnrich`, load the package:
+
+```{r message=FALSE, warning=FALSE}
+library("FunEnrich")
+```
+
+Let's now use the gene-disease associations included in the package. We will use `disease.genes` as background and genes associated with `metabolic` disorders as genes of interest (type `?metabolic` and `?disease.genes` in R for more information about these datasets):
+
+```{r message=FALSE, warning=FALSE}
+analysis <- fun_enrich(gene.list = metabolic, background = disease.genes, 
+                       id.type = "ENTREZID", benjamini = FALSE)
+```
+
+We can now explore, for example, the Molecular Functions enriched in genes that are specifically associated with metabolic disorders...
+
+```{r}
+head(analysis$mf)
+```
+
+... as well as the enriched REACTOME pathways:
+
+```{r}
+head(analysis$reactome)
+```
+
+

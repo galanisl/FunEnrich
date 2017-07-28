@@ -200,6 +200,8 @@ do_fisher_tests <- function(gene.counts, bg.counts){
 #' @param aspect character; One of ALL, BP, CC, MF or REACTOME.
 #' @param benjamini logical; If TRUE, plot corrected p-values.
 #' @param top integer; The number of top enriched terms to consider.
+#' @param char_per_line integer; Controls the number of characters per line for
+#' the term names in the plots.
 #' 
 #' @return A ggplot object.
 #' 
@@ -211,14 +213,15 @@ do_fisher_tests <- function(gene.counts, bg.counts){
 #' analysis <- fun_enrich(gene.list = metabolic, background = disease.genes, 
 #'                       id.type = "ENTREZID", benjamini = TRUE)
 #' # Plot the 
-#' vis <- plot_fun_enrich(enr = analysis, aspect = "ALL", 
-#'                        benjamini = TRUE, top = 5)
+#' vis <- plot_fun_enrich(enr = analysis, aspect = "ALL", benjamini = TRUE, 
+#'                        top = 5, char_per_line = 80)
 #' 
 #' @export
 #' @import ggplot2
 #' @import stringr
 #' 
-plot_fun_enrich <- function(enr, aspect = "ALL", benjamini = FALSE, top = 5){
+plot_fun_enrich <- function(enr, aspect = "ALL", benjamini = FALSE, 
+                            top = 5, char_per_line = 80){
   if(benjamini & is.null(enr$bp$bh)){
     stop(paste0("Correction of p-values was not requested for the provided ", 
                 "enrichment analysis..."))
@@ -252,7 +255,7 @@ plot_fun_enrich <- function(enr, aspect = "ALL", benjamini = FALSE, top = 5){
     }else{
       df$prob <- -log10(df$pval)
     }
-    df$term <- str_wrap(df$term, width = 50)
+    df$term <- str_wrap(df$term, width = char_per_line)
     df$term <- factor(df$term, levels = df$term)
     p <- ggplot(df, aes_(~term, ~prob, fill = ~aspect)) + geom_col() + 
       coord_flip() + labs(x = "", y = expression(-log[10](p-value))) + 

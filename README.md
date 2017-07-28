@@ -50,19 +50,19 @@ head(analysis$mf)
 ```
 
     ##          go.id                                                 term
-    ## 334 GO:0005254                            chloride channel activity
-    ## 577 GO:0030170                          pyridoxal phosphate binding
-    ## 297 GO:0005159          insulin-like growth factor receptor binding
-    ## 111 GO:0004029                aldehyde dehydrogenase (NAD) activity
-    ## 260 GO:0005007 fibroblast growth factor-activated receptor activity
-    ## 314 GO:0005219 ryanodine-sensitive calcium-release channel activity
+    ## 624 GO:0030170                          pyridoxal phosphate binding
+    ## 323 GO:0005159          insulin-like growth factor receptor binding
+    ## 340 GO:0005219 ryanodine-sensitive calcium-release channel activity
+    ## 101 GO:0003924                                      GTPase activity
+    ## 118 GO:0004029                aldehyde dehydrogenase (NAD) activity
+    ## 246 GO:0004806                         triglyceride lipase activity
     ##             pval
-    ## 334 7.647321e-05
-    ## 577 6.699617e-04
-    ## 297 7.688331e-04
-    ## 111 2.142760e-03
-    ## 260 2.142760e-03
-    ## 314 2.142760e-03
+    ## 624 0.0001081392
+    ## 323 0.0002985053
+    ## 340 0.0002985053
+    ## 101 0.0006422754
+    ## 118 0.0008238455
+    ## 246 0.0008238455
 
 ... as well as the enriched REACTOME pathways:
 
@@ -70,24 +70,32 @@ head(analysis$mf)
 head(analysis$reactome)
 ```
 
-    ##     react.id
-    ## 91   1430728
-    ## 885    71387
-    ## 670   446193
-    ## 672   446203
-    ## 180  1660662
-    ## 873    70326
-    ##                                                                                                                                 pathway
-    ## 91                                                                                                             Homo sapiens: Metabolism
-    ## 885                                                                                           Homo sapiens: Metabolism of carbohydrates
-    ## 670 Homo sapiens: Biosynthesis of the N-glycan precursor (dolichol lipid-linked oligosaccharide, LLO) and transfer to a nascent protein
-    ## 672                                                                                     Homo sapiens: Asparagine N-linked glycosylation
-    ## 180                                                                                          Homo sapiens: Glycosphingolipid metabolism
-    ## 873                                                                                                    Homo sapiens: Glucose metabolism
-    ##             pval
-    ## 91  4.267708e-13
-    ## 885 2.154152e-09
-    ## 670 6.281716e-08
-    ## 672 8.262870e-08
-    ## 180 1.894112e-06
-    ## 873 2.034622e-06
+    ##           react.id
+    ## 91   R-HSA-1430728
+    ## 1034   R-HSA-71387
+    ## 702   R-HSA-446193
+    ## 1022   R-HSA-70326
+    ## 180  R-HSA-1660662
+    ## 704   R-HSA-446203
+    ##                                                                                                                                  pathway
+    ## 91                                                                                                              Homo sapiens: Metabolism
+    ## 1034                                                                                           Homo sapiens: Metabolism of carbohydrates
+    ## 702  Homo sapiens: Biosynthesis of the N-glycan precursor (dolichol lipid-linked oligosaccharide, LLO) and transfer to a nascent protein
+    ## 1022                                                                                                    Homo sapiens: Glucose metabolism
+    ## 180                                                                                           Homo sapiens: Glycosphingolipid metabolism
+    ## 704                                                                                      Homo sapiens: Asparagine N-linked glycosylation
+    ##              pval
+    ## 91   1.401490e-15
+    ## 1034 2.748917e-10
+    ## 702  1.596449e-08
+    ## 1022 5.894149e-07
+    ## 180  1.425224e-06
+    ## 704  1.744076e-06
+
+It is also possible to generate a bar plot that focuses on the most enriched term of one or all categories:
+
+``` r
+plot_fun_enrich(enr = analysis, aspect = "ALL", benjamini = F, top = 5)
+```
+
+![](README_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)

@@ -4,7 +4,8 @@
 \alias{plot_fun_enrich}
 \title{Plot the results of the BP, CC, MF and/or REACTOME enrichment analyses}
 \usage{
-plot_fun_enrich(enr, aspect = "ALL", benjamini = FALSE, top = 5)
+plot_fun_enrich(enr, aspect = "ALL", benjamini = FALSE, top = 5,
+  char_per_line = 80)
 }
 \arguments{
 \item{enr}{listr; The list of data frames resulting from \code{fun_enrich}.}
@@ -14,6 +15,9 @@ plot_fun_enrich(enr, aspect = "ALL", benjamini = FALSE, top = 5)
 \item{benjamini}{logical; If TRUE, plot corrected p-values.}
 
 \item{top}{integer; The number of top enriched terms to consider.}
+
+\item{char_per_line}{integer; Controls the number of characters per line for
+the term names in the plots.}
 }
 \value{
 A ggplot object.
@@ -28,8 +32,8 @@ the p-values for one or all analysed aspects.
 analysis <- fun_enrich(gene.list = metabolic, background = disease.genes, 
                       id.type = "ENTREZID", benjamini = TRUE)
 # Plot the 
-vis <- plot_fun_enrich(enr = analysis, aspect = "ALL", 
-                       benjamini = TRUE, top = 5)
+vis <- plot_fun_enrich(enr = analysis, aspect = "ALL", benjamini = TRUE, 
+                       top = 5, char_per_line = 80)
 
 }
 \author{

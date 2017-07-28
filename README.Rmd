@@ -5,7 +5,8 @@ date: false
 output: rmarkdown::github_document
 ---
 
-BP, CC, MF (i.e. Gene Ontology) and REACTOME enrichment analyses for a list of genes of interest, given a list of background genes.
+BP, CC, MF (i.e. Gene Ontology) and REACTOME enrichment analyses for a list of 
+genes of interest, given a list of background genes.
 
 The package supports ENTREZIDs (default), GENE SYMBOLs and UNIPROT accessions.
 
@@ -37,14 +38,18 @@ To start using `FunEnrich`, load the package:
 library("FunEnrich")
 ```
 
-Let's now use the gene-disease associations included in the package. We will use `disease.genes` as background and genes associated with `metabolic` disorders as genes of interest (type `?metabolic` and `?disease.genes` in R for more information about these datasets):
+Let's now use the gene-disease associations included in the package. We will use
+`disease.genes` as background and genes associated with `metabolic` disorders as
+genes of interest (type `?metabolic` and `?disease.genes` in R for more 
+information about these datasets):
 
 ```{r message=FALSE, warning=FALSE}
 analysis <- fun_enrich(gene.list = metabolic, background = disease.genes, 
                        id.type = "ENTREZID", benjamini = FALSE)
 ```
 
-We can now explore, for example, the Molecular Functions enriched in genes that are specifically associated with metabolic disorders...
+We can now explore, for example, the Molecular Functions enriched in genes that 
+are specifically associated with metabolic disorders...
 
 ```{r}
 head(analysis$mf)
@@ -56,4 +61,10 @@ head(analysis$mf)
 head(analysis$reactome)
 ```
 
+It is also possible to generate a bar plot that focuses on the most enriched
+term of one or all categories:
+
+```{r}
+plot_fun_enrich(enr = analysis, aspect = "ALL", benjamini = F, top = 5)
+```
 

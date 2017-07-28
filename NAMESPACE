@@ -2,7 +2,11 @@
 
 export(do_fisher_tests)
 export(fun_enrich)
+export(plot_fun_enrich)
 import(GO.db)
+import(ggplot2)
 import(org.Hs.eg.db)
 import(reactome.db)
+import(stringr)
+importFrom(AnnotationDbi,keys)
 importFrom(AnnotationDbi,select)

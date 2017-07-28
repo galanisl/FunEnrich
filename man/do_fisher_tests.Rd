@@ -15,7 +15,8 @@ do_fisher_tests(gene.counts, bg.counts)
 A vector with the p-values for each term.
 }
 \description{
-Carry out the required over-representation tests for each of the terms annotating the genes of interest.
+Carry out the required over-representation tests for each of the terms 
+annotating the genes of interest.
 }
 \examples{
 # Generate a hypotetical scenario of annotations

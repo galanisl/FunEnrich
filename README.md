@@ -95,7 +95,8 @@ head(analysis$reactome)
 It is also possible to generate a bar plot that focuses on the most enriched term of one or all categories:
 
 ``` r
-plot_fun_enrich(enr = analysis, aspect = "ALL", benjamini = F, top = 5)
+plot_fun_enrich(enr = analysis, aspect = "ALL", benjamini = F, 
+                top = 5, char_per_line = 80)
 ```
 
 ![](README_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)

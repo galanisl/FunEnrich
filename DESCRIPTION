@@ -7,7 +7,7 @@ Author: Gregorio Alanis-Lobato
 Maintainer: Gregorio Alanis-Lobato <galanisl@uni-mainz.de>
 Description: BP, CC, MF (i.e. Gene Ontology) and REACTOME enrichment analyses for a list of genes of interest, given a list of background genes.
 License: MIT + file LICENSE
-biocViews: AnnotationDbi, org.Hs.eg.db, GO.db, reactome.db
+biocViews: org.Hs.eg.db, GO.db, reactome.db
 Depends: R (>= 3.1), org.Hs.eg.db (>= 3.2), GO.db (>= 3.2), reactome.db (>= 1.54), stringr (>= 0.4.1), ggplot2 (>= 2.2)
 Imports: AnnotationDbi (>= 1.32)
 Suggests: knitr, rmarkdown

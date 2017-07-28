@@ -233,6 +233,7 @@ plot_fun_enrich <- function(enr, aspect = "ALL", benjamini = FALSE,
       df$aspect <- factor(rep(c("BP", "CC", "MF", "REACTOME"), each = top),
                           levels = c("BP", "CC", "MF", "REACTOME"),
                           ordered = T)
+      df <- df[order(df$aspect, decreasing = T), ]
     }else if(aspect == "BP"){
       df <- enr$bp[top:1,]
       df$aspect <- "BP"

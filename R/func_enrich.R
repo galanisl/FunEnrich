@@ -71,24 +71,32 @@ fun_enrich <- function(gene.list, background,
   all.react.bg <- select(reactome.db, keys = unique(all.go.bg$ENTREZID), 
                          columns = c("PATHID"), keytype = "ENTREZID")
   
-  bp.genes <- table(all.go.genes$GO[all.go.genes$EVIDENCE != "IEA" & 
+  # Inferred from Electronic Annotation (IEA) and No biological Data (ND) terms 
+  # are removed
+  bp.genes <- table(all.go.genes$GO[all.go.genes$EVIDENCE != "IEA" &
+                                      all.go.genes$EVIDENCE != "ND" &
                                       all.go.genes$ONTOLOGY == "BP" & 
                                       !duplicated(all.go.genes[, 1:3])])
   cc.genes <- table(all.go.genes$GO[all.go.genes$EVIDENCE != "IEA" & 
+                                      all.go.genes$EVIDENCE != "ND" &
                                       all.go.genes$ONTOLOGY == "CC" & 
                                       !duplicated(all.go.genes[, 1:3])])
-  mf.genes <- table( all.go.genes$GO[all.go.genes$EVIDENCE != "IEA" & 
+  mf.genes <- table( all.go.genes$GO[all.go.genes$EVIDENCE != "IEA" &
+                                       all.go.genes$EVIDENCE != "ND" &
                                        all.go.genes$ONTOLOGY == "MF" & 
                                        !duplicated(all.go.genes[, 1:3])])
   
   # Inferred from Electronic Annotation (IEA) terms are removed
   bp.bg <- table(all.go.bg$GO[all.go.bg$EVIDENCE != "IEA" & 
+                                all.go.bg$EVIDENCE != "ND" &
                                 all.go.bg$ONTOLOGY == "BP" & 
                                 !duplicated(all.go.bg[, 1:3])])
   cc.bg <- table(all.go.bg$GO[all.go.bg$EVIDENCE != "IEA" & 
+                                all.go.bg$EVIDENCE != "ND" &
                                 all.go.bg$ONTOLOGY == "CC" & 
                                 !duplicated(all.go.bg[, 1:3])])
   mf.bg <- table(all.go.bg$GO[all.go.bg$EVIDENCE != "IEA" & 
+                                all.go.bg$EVIDENCE != "ND" &
                                 all.go.bg$ONTOLOGY == "MF" & 
                                 !duplicated(all.go.bg[, 1:3])])
   
